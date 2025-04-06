@@ -8,7 +8,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/your-org/weather-system.git
+      repoURL: https://github.com/ana-m-v/weather-system.git
       revision: HEAD
       directories:
         - path: "apps/*"
