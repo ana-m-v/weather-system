@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: weather-api
+  namespace: weather  # Must match your namespace
 spec:
   replicas: 2
   selector:
@@ -17,10 +18,7 @@ spec:
         image: weather-api:1.0
         imagePullPolicy: Never
         ports:
-            - nodePort: 18080  # Matches kind-cluster.yaml
-            - containerPort: 8080
-        port: 80
-        targetPort: 8080
+        - containerPort: 8080  # Single dash, no indentation issues
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
           value: "host.docker.internal:9092"
