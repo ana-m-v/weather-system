@@ -22,6 +22,6 @@ spec:
         targetPort: 8080
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
-          value: "kafka:9092"
+          value: "host.docker.internal:9092"
         - name: MONGODB_URI
           value: "mongodb://mongodb-0.mongodb,mongodb-1.mongodb,mongodb-2.mongodb/weather"

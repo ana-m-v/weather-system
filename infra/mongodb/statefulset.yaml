@@ -5,7 +5,13 @@ metadata:
 spec:
   serviceName: mongodb
   replicas: 3
+  selector:
+    matchLabels:
+      app: mongodb
   template:
+    metadata:
+      labels:
+        app: mongodb
     spec:
       containers:
       - name: mongodb
