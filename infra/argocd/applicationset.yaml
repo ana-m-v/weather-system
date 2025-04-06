@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: weather-system
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/your-org/weather-system.git
+      revision: HEAD
+      directories:
+      - path: "apps/*"
+      - path: "infra/*"
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/your-org/weather-system.git
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: weather
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true

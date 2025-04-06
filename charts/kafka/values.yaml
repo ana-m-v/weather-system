@@ -1,0 +1,8 @@
+replicaCount: 3
+externalAccess:
+  enabled: true
+  service:
+    type: NodePort
+    nodePorts: [30081]
+persistence:
+  size: 10Gi
