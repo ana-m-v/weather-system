@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-consumer
+  namespace: weather
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-consumer
+  template:
+    metadata:
+      labels:
+        app: weather-consumer
+    spec:
+      containers:
+      - name: consumer
+        image: weather-consumer:1.0
+        imagePullPolicy: Never
+        env:
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "host.docker.internal:9092"
+        - name: MONGODB_URI
+          value: "mongodb://mongodb-0.mongodb,mongodb-1.mongodb,mongodb-2.mongodb/weather"

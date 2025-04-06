@@ -2,14 +2,19 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: weather-system
+  namespace: argocd
 spec:
   generators:
   - git:
       repoURL: https://github.com/your-org/weather-system.git
       revision: HEAD
       directories:
-      - path: "apps/*"
-      - path: "infra/*"
+      - path: "apps/weather-producer"
+      - path: "apps/weather-consumer"
+      - path: "apps/weather-api"
+      - path: "apps/weather-stream"
+      - path: "infra/kafka"
+      - path: "infra/mongodb"
   template:
     metadata:
       name: '{{path.basename}}'
@@ -18,6 +23,7 @@ spec:
       source:
         repoURL: https://github.com/your-org/weather-system.git
         path: '{{path}}'
+        targetRevision: HEAD
       destination:
         server: https://kubernetes.default.svc
         namespace: weather

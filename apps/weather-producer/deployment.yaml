@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-producer
+  namespace: weather
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-producer
+  template:
+    metadata:
+      labels:
+        app: weather-producer
+    spec:
+      containers:
+      - name: producer
+        image: weather-producer:1.0
+        imagePullPolicy: Never
+        env:
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "host.docker.internal:9092"
