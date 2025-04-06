@@ -19,7 +19,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/your-org/weather-system.git
+        repoURL: https://github.com/ana-m-v/weather-system.git
         path: '{{path}}'
         targetRevision: HEAD
       destination:
