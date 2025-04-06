@@ -18,6 +18,7 @@ spec:
         imagePullPolicy: Never
         ports:
             - nodePort: 18080  # Matches kind-cluster.yaml
+            - containerPort: 8080
         port: 80
         targetPort: 8080
         env:
