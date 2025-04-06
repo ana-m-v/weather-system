@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: weather-api:1.7
+        image: weather-api:2.0
         imagePullPolicy: Never
         ports:
         - containerPort: 8080  # Single dash, no indentation issues
