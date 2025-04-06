@@ -3,18 +3,16 @@ kind: ApplicationSet
 metadata:
   name: weather-system
   namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: weather-system
 spec:
   generators:
   - git:
       repoURL: https://github.com/your-org/weather-system.git
       revision: HEAD
       directories:
-      - path: "apps/weather-producer"
-      - path: "apps/weather-consumer"
-      - path: "apps/weather-api"
-      - path: "apps/weather-stream"
-      - path: "infra/kafka"
-      - path: "infra/mongodb"
+        - path: "apps/*"
+        - path: "infra/*"
   template:
     metadata:
       name: '{{path.basename}}'
